@@ -1,6 +1,6 @@
 {
   "name": "quantic",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "Quantic — espace personnel de gestion, d'organisation et de suivi (Tauri + API).",
   "workspaces": [

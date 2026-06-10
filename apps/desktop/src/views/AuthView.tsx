@@ -116,7 +116,12 @@ export function AuthView() {
         <p className="lede">
           Une application pour organiser ton travail, tes idées et ton équilibre personnel.
         </p>
-        <div className="auth-system-preview" aria-hidden="true">
+        <div className="auth-system-preview auth-minimal-window" aria-hidden="true">
+          <div className="auth-window-bar">
+            <span />
+            <span />
+            <span />
+          </div>
           <div className="auth-preview-main">
             <span className="preview-line line-a" />
             <span className="preview-line line-b" />
