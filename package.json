@@ -1,0 +1,16 @@
+{
+  "name": "quantic",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Quantic — espace personnel de gestion, d'organisation et de suivi (Tauri + API).",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:shared": "npm run build -w @quantic/shared",
+    "dev:api": "npm run dev -w @quantic/api",
+    "dev:desktop": "npm run dev -w @quantic/desktop",
+    "build": "npm run build:shared && npm run build -w @quantic/api && npm run build -w @quantic/desktop"
+  }
+}

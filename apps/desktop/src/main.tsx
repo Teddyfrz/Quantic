@@ -1,0 +1,16 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { App } from "./App";
+import { AuthProvider } from "./lib/auth";
+import { initPrefs } from "./lib/prefs";
+import "./styles.css";
+
+initPrefs();
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </React.StrictMode>
+);

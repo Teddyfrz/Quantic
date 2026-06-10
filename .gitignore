@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.local
+.env
+.tauri-key/
+.backups/
+*.tsbuildinfo
+
+# Prisma / SQLite
+apps/api/prisma/*.db
+apps/api/prisma/*.db-journal
+
+# Tauri
+apps/desktop/src-tauri/target/
+
+# Logs
+*.log
