@@ -208,6 +208,11 @@ Tout est filtré/trié côté client via `useMemo`.
 - Inscription **uniquement** par code d'invitation valide.
 - Pas de fonctionnalités hors liste (pas de gamification, scoring, citations, etc.).
 - **Coquille Tauri 2 générée et fonctionnelle** : `apps/desktop/src-tauri/` (`Cargo.toml`, `src/main.rs` + `src/lib.rs`, `build.rs`, `capabilities/default.json`, icônes via `tauri icon`). CLI `@tauri-apps/cli@2` + `@tauri-apps/api@2` installés. Lancement : `npm run tauri dev -w @quantic/desktop` (Vite `:1422` + window). Prérequis : Rust + port 1422 libre. La fenêtre charge le front Vite et tape l'API `:4000`.
+- **Repo GitHub + releases desktop** : dépôt privé `Teddyfrz/Quantic`, branche `main`, tag de release courant `app-v0.1.0`. Le workflow `.github/workflows/release-desktop.yml` construit Windows/macOS/Linux via GitHub Actions et publie les artefacts directement en release.
+- **Mises à jour automatiques Tauri** : plugin `@tauri-apps/plugin-updater` + `@tauri-apps/plugin-process` côté JS, crates `tauri-plugin-updater` + `tauri-plugin-process` côté Rust. Endpoint updater : `https://github.com/Teddyfrz/Quantic/releases/latest/download/latest.json`. La vérification/installation est exposée dans `SettingsView` via `apps/desktop/src/lib/updater.ts`.
+- **Signature updater** : paire de clés générée localement dans `.tauri-key/` (ignoré Git). La clé publique est dans `tauri.conf.json`; la clé privée doit être copiée dans le secret GitHub Actions `TAURI_SIGNING_PRIVATE_KEY`. Pas de mot de passe sur la clé générée actuellement.
+- **Workflow release corrigé** : `tauri-apps/tauri-action@v0.6.2` (le tag `v1` n'existe pas sur l'action officielle). `releaseDraft: false` pour rendre la version téléchargeable dès que le build passe. Les icônes natives sont déclarées explicitement (`.png`, `.icns`, `.ico`) pour éviter l'erreur Windows `Couldn't find a .ico icon`.
+- **Backup avant mise en Git/release** : archive source locale `.backups/quantic-source-backup-20260610-171656.zip`, excluant `node_modules`, `target`, `.tauri-key`, les builds et la base SQLite verrouillée.
 
 ## Démarrage (dev)
 
@@ -223,13 +228,13 @@ npm run dev:desktop               # frontend sur :1420
 ## Points à faire ensuite (polish / hors cahier des charges initial)
 
 Tous les modules demandés sont livrés. Pistes d'amélioration éventuelles :
-1. Générer la coquille Tauri (Rust) pour le packaging desktop (actuellement web via Vite).
+1. Stabiliser la chaîne de release desktop GitHub Actions jusqu'à obtenir les artefacts Windows/macOS/Linux téléchargeables.
 2. Persistance serveur des préférences (thème/météo/profil) si multi-appareils souhaité (aujourd'hui en `localStorage`).
 3. Édition des séances de sport (actuellement ajout + suppression).
 4. Tests automatisés (API + composants).
 
 ## Bugs / limites connues
 
-- Coquille Tauri 2 opérationnelle en **dev** (`tauri dev`). Packaging/bundle (`tauri build`) non encore testé.
+- Coquille Tauri 2 opérationnelle en **dev** (`tauri dev`). Packaging GitHub Actions en cours de stabilisation : macOS est passé, Windows a été corrigé via déclaration `.ico`, Ubuntu reste à vérifier selon le dernier log Actions.
 - Pas encore de refresh token (JWT simple). Suffisant pour le dev.
 - `prisma db push` peut échouer derrière un proxy réseau (génération du client à surveiller).
