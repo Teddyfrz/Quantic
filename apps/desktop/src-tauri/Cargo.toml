@@ -1,6 +1,6 @@
 [package]
 name = "quantic"
-version = "0.1.0"
+version = "0.1.1"
 description = "Quantic — espace personnel de gestion"
 authors = ["teddyf"]
 edition = "2021"
