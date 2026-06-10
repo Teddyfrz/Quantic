@@ -96,6 +96,12 @@ export function AuthView() {
 
   return (
     <div className="auth-split">
+      <div className="auth-atmosphere" aria-hidden="true">
+        <span className="auth-grid-plane plane-a" />
+        <span className="auth-grid-plane plane-b" />
+        <span className="auth-light-sweep" />
+      </div>
+
       {/* Volet gauche */}
       <section className="auth-hero">
         <div className="auth-logo">
@@ -110,6 +116,19 @@ export function AuthView() {
         <p className="lede">
           Une application pour organiser ton travail, tes idées et ton équilibre personnel.
         </p>
+        <div className="auth-system-preview" aria-hidden="true">
+          <div className="auth-preview-main">
+            <span className="preview-line line-a" />
+            <span className="preview-line line-b" />
+            <span className="preview-line line-c" />
+            <span className="preview-pulse" />
+          </div>
+          <div className="auth-preview-stack">
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
         <div className="auth-features">
           {FEATURES.map((f) => (
             <div className="auth-feature" key={f.title}>
@@ -125,6 +144,7 @@ export function AuthView() {
 
       {/* Volet droit : carte */}
       <section className="auth-panel">
+        <div className="auth-panel-edge" aria-hidden="true" />
         <div className="auth-tabs">
           <button className={`auth-tab ${mode === "login" ? "on" : ""}`} onClick={() => switchMode("login")}>
             Connexion
