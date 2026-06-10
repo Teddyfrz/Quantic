@@ -70,7 +70,7 @@ jobs:
           tagName: app-v__VERSION__
           releaseName: Quantic v__VERSION__
           releaseBody: "Installeur desktop Quantic et manifeste latest.json pour les mises a jour automatiques."
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           updaterJsonPreferNsis: true
           args: ${{ matrix.args }}
